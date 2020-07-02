@@ -48,7 +48,6 @@ def solution(scoville, K):
         mixed = first_smallest + second_smallest * 2
         
         heapq.heappush(scoville, mixed)
-        heapq.heapify(scoville)
         answer +=1
 
     if scoville[0] < K:
