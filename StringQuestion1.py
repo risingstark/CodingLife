@@ -31,6 +31,6 @@ def solution(s, n):
 
 if __name__ == "__main__":
 
-    s = "ab"
+    s = "AB"
     n = 4
     print(solution(s,n))
