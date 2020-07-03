@@ -1,3 +1,2 @@
-# CodingLife
-practice
+CodingLife
 
