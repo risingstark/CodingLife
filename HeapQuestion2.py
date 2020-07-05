@@ -44,22 +44,34 @@ stock	dates   	supplies	k	result
 import heapq
 
 def solution(stock, dates, supplies, k):
+
     answer = 0
     heap = []
-    while stock < k:
-        while len(dates) > 0 and dates[0] <= stock: 
-            dates.pop(0)
-            heapq.heappush(heap, -supplies.pop(0))
+    i = 0
 
+    while stock < k:
+        while len(dates)-i > 0 and dates[i] <= stock: 
+            heapq.heappush(heap, -supplies[i])
+            i+=1
         stock -= heapq.heappop(heap)
         answer += 1
-
     return answer
 
-
 if __name__ == "__main__":
+    '''
     stock = 4
     dates = [4,10,15]
-    supplies = [20, 5, 10]
+    supplies = [20,5,10]
     k = 30
     print(solution(stock, dates, supplies, k))
+    stock1 = 4
+    dates1 = [1,2,3,4]
+    supplies1 = [10,40,20,30]
+    k1 = 100
+    print(solution(stock1, dates1, supplies1, k1))
+    stock2 = 8
+    dates2 = [5,10]
+    supplies2 = [5,10]
+    k2 = 15
+    print(solution(stock2, dates2, supplies2, k2))
+    '''
