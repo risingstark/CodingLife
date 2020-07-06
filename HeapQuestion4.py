@@ -1,4 +1,5 @@
 import heapq
+from collections import deque
 
 def solution(operations):
     """(list) -> (list)
@@ -13,20 +14,18 @@ def solution(operations):
     """
     answer = []
     heap = []
-    print(11111111111111)
     for operation in operations:
-        print(operation)
-        sign, int(number) = operation.split(" ")
+        sign, number = operation.split(" ")
         if sign == "I":
-            heapq.heappush(heap,number)
+            heapq.heappush(heap,int(number))
         elif sign == "D" and len(heap)>0:
             if number == "-1":
                 heapq.heappop(heap)
             else:
                 heap.pop(-1)
     if len(heap) > 0:
-        answer.append(maximum = heap[-1])
-        answer.append(minimum = heap[0])
+        answer = deque(sorted(heap))
+        return [answer[-1],answer[0]]
     else:
         return [0,0]
 
@@ -38,3 +37,5 @@ if __name__ == "__main__":
     print("solution should be [0,0]",solution(operations))
     operations1 = ["I 7","I 5","I -5","D -1"]
     print("solution1 should be [7,5]",solution(operations1))
+    operations2 = ["I 7"]
+    print("solution1 should be [7,7]",solution(operations2))
