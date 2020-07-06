@@ -49,4 +49,4 @@ if __name__ == "__main__":
     #jobs = [[0,1],[1,2],[500,6]]
     #jobs = [[0, 3], [1, 9], [2, 6]]
     jobs = [[0,2], [3,2], [6,2]]
-    print(solution1(jobs))
+    print(solution(jobs))
