@@ -11,19 +11,25 @@ def solution(jobs):
     total_ele = len(jobs)
     heap = []
     answer = 0
-    for i in range(total_ele):
+    for i in range(total_ele+1):
         while jobs and jobs[0][0] <= start:
-            (s,t) = heapq.heappop(jobs)
-            heapq.heappush(heap,(t,s))
+            (req,time) = heapq.heappop(jobs)
+            heapq.heappush(heap,(time,req))
         if len(heap) > 0:
-            (t, s) = heapq.heappop(heap)
-            answer += t + max(0, start-s)
-            start = t + max(start, s)
+            (time, req) = heapq.heappop(heap)
+            answer += time + max(0, start-req)
+            start = time + max(start, req)
+        elif len(jobs) > 0: 
+            if jobs[0][0] > start:
+                start = jobs[0][0]
+
+
     return int(answer/total_ele)
 
 
 if __name__ == "__main__":
 
-    jobs = [[0,1],[1,2],[500,6]]
-    jobs = [[0, 3], [1, 9], [2, 6]]
-    print("solution should be 3 = ",solution(jobs))
+    #jobs = [[0,1],[1,2],[500,6]]
+    #jobs = [[0, 3], [1, 9], [2, 6]]
+    jobs = [[0,2], [3,2], [6,]]
+    print(solution(jobs))
