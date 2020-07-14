@@ -1,5 +1,6 @@
 def dfs(array, numbers, target, size):
-    '''
+    '''(int, list, int, int) -> int
+    help function using DFS algorithm.
     '''
     answer = 0 
     if len(array) == size: 
@@ -17,7 +18,8 @@ def dfs(array, numbers, target, size):
         return answer 
 
 def solution(numbers, target):
-    '''
+    '''(list, int) -> int
+    return the possible number produced given the combinations of sum, minus, divide, multiple of numbers.
     '''
     answer = 0
     answer += dfs([numbers[0]], numbers[1:], target, len(numbers))
