@@ -1,8 +1,6 @@
 # Given two strings s1 and s2, checn if they are anagrams. 
 # Two strings ar anagrams if they are made of the same characters 
 # with the same frequencies
-from collections import Counter
-
 class Solution:
 
     # solution 1. 
