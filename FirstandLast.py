@@ -9,7 +9,7 @@ class Solution:
     
     # soluotion 1
     # using for loop, time: O(N), space: O(1)
-    def firstandlast1(self,arr,target):
+    def first_and_last1(self,arr,target):
         
         res = []
         for i,v in enumerate(arr):
@@ -22,20 +22,53 @@ class Solution:
         return [-1,-1]
         
 
-
     # solution 2
-    # using binary search
-    def firstandlast2(self,arr,target):
+    # using binary search to find firt and last occurance of target in arr
+    # time: O(logN), space: O(1)
+    def first_and_last2(self,arr,target):
 
-        res = []
+        if len(arr) == 0 or arr[-1] < target or arr[0] > target:
+            return [-1,-1]
+        first = self.find_start(arr,target)
+        end = self.find_end(arr,target)
+        return [first,end]
 
+    def find_start(self,arr,target):
+        
+        if len(arr) == 0:
+            return 0
+        left, right = 0, len(arr)-1
+        while left<=right:
+            mid = (left+right)//2
+            if arr[mid] == target and arr[mid-1] < target:
+                return mid
+            elif arr[mid] < target:
+                left = mid +1
+            else:
+                right = mid-1
+        return -1
 
-        return res
+    def find_end(self,arr,target):
 
+        if arr[-1] == target:
+            return len(arr)-1
+        left, right = 0, len(arr)-1
+        while left <= right:
+            mid = (left+right)//2
+            if arr[mid]==target and arr[mid+1] > target:
+                return mid
+            elif arr[mid] > target:
+                left = mid+1
+            else:
+                right = mid-1
+        return -1            
+
+        
 if __name__=="__main__":
 
     arr = [2,4,5,5,5,5,5]
     target = 5
     output = [2,6]
     s = Solution()
-    print(s.firstandlast1(arr,target) == output)
+    print(s.first_and_last1(arr,target) == output)
+    print(s.first_and_last2(arr,target) == output)
