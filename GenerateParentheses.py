@@ -1,6 +1,8 @@
 # Givcen an integer n, generate all the valid
 # combinations of n pairs of parentheses
 
+# time: , space:
+
 class Solution():
     def generate(self,n):
         def rec(n,diff,comb,combs):
