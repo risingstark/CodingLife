@@ -29,6 +29,10 @@
 # n == grid[i].length
 # 1 <= m, n <= 10
 # grid[i][j] is 0, 1, or 2.
+
+# ============================================================================================
+# time : O(n), space : O(n) where n is the number of cells in grid
+
 import collections
 
 class Solution(object):
