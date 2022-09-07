@@ -76,9 +76,7 @@ class Solution(object):
                 graph[p] = set([c])
             else:
                 graph[p].add(c)
-        
-        print(graph)
-        
+                
         color = [0]*numCourses
         for i in range(numCourses):
             # node i not visited
@@ -99,5 +97,5 @@ if __name__ == "__main__":
     prerequisites= [[[1,0]],[[1,0],[2,0],[3,1],[3,2]],[]]
     output = [[0,1],[0,2,1,3],[0]]
     for i in range(len(numCourses)):
-            print(s.findOrder(numCourses[i],prerequisites[i]),output[i])
+            print(s.findOrder(numCourses[i],prerequisites[i])==output[i])
 
