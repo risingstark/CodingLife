@@ -33,7 +33,10 @@
 # ai != bi
 # All the pairs [ai, bi] are distinct.
 
-
+# ==================================================================================
+# write code here
+# ==================================================================================
+import collections
 
 class Solution(object):
     def findOrder(self, numCourses, prerequisites):
@@ -43,7 +46,51 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        pass
+        # directed graph, G contains nodes of numCourses. 
+        # G(dictionary, key= prerequisite, items = set() of courses)
+        # Color list(0,1,2), 0 = not visited, 1 = visiting, 2= done visiting
+        # DFS return False if there is a cycle or ...
+
+        def dfs(i):
+            
+            color[i] = 1
+            if i in graph:
+                for j in graph[i]:
+                    # graph has a cycle
+                    if color[j] == 1:
+                        return False
+                    # j is not visited, check j's prerequisites
+                    elif color[j] == 0:
+                        if not dfs(j):
+                            return False
+            res.appendleft(i)
+            color[i] = 2
+            return True     
+            
+        # initialize queue
+        res = collections.deque([])
+        # create directed graph
+        graph = {}
+        for c,p in prerequisites:
+            if p not in graph:
+                graph[p] = set([c])
+            else:
+                graph[p].add(c)
+        
+        print(graph)
+        
+        color = [0]*numCourses
+        for i in range(numCourses):
+            # node i not visited
+            if color[i] == 0:
+                if not dfs(i):
+                    return []
+        return list(res)
+        
+        
+        
+
+
 
 if __name__ == "__main__":
 
@@ -52,5 +99,5 @@ if __name__ == "__main__":
     prerequisites= [[[1,0]],[[1,0],[2,0],[3,1],[3,2]],[]]
     output = [[0,1],[0,2,1,3],[0]]
     for i in range(len(numCourses)):
-            print(s.findOrder(numCourses[i],prerequisites[i])==output[i])
+            print(s.findOrder(numCourses[i],prerequisites[i]),output[i])
 
