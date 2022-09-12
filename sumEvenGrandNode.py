@@ -29,7 +29,9 @@ class TreeNode(object):
 import collections
 
 class Solution(object):
+    
     # BFS, iteratively, straightforward
+    # time: O(n), space: O(h), where h is the height of the tree
     def sumEvenGrandparent1(self, root):
         """
         :type root: TreeNode
@@ -59,7 +61,7 @@ class Solution(object):
                 q.append(node.right)
         return sm
                 
-
+    # time: O(n), space: O(h), where h is the height of the tree
     def sumEvenGrandparent2(self, root):
         if not root:
             return 0
@@ -72,4 +74,3 @@ class Solution(object):
             return traverse_node(node.left, node, parent) + traverse_node(node.right, node, parent)
 
         return traverse_node(root, None, None)
-        
