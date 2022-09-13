@@ -23,6 +23,8 @@
 # grid[i][j] is either 0 or 1.
 
 class Solution(object):
+
+    # time: O(R * C). where R is the number of rows in the given grid, and C is the number of colums. visiting every square once
     def maxAreaOfIsland(self, grid):
         """
         :type grid: List[List[int]]
