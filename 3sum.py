@@ -38,55 +38,72 @@ class Solution(object):
         
         res = set()
         nums.sort()
-        
         for i in range(len(nums)-2):
-            if i > 0:
-                return list(res)
-            l,r = i+1, len(nums)-1
-            while l < r:
-                val = nums[i] + nums[l] + nums[r]
-                if val == 0:
-                    res.add((nums[i],nums[l],nums[r]))
-                    l+=1
-                elif val < 0:
-                    l+=1
+            left = i +1
+            right = len(nums)-1
+            while left < right and nums[left] < 1:
+                if -nums[i] == nums[left] + nums[right]:
+                    res.add((nums[i],nums[left],nums[right]))
+                    left+=1
+                elif -nums[i] < nums[left] + nums[right]:
+                    right-=1
                 else:
-                    r-=1
+                    left+=1
+
         return list(res)
 
-    # time: O(n^2), space: O(1)
-    # optimization version from threeSum1()
-    def threeSum2(self, nums):
-            """
-            :type nums: List[int]
-            :rtype: List[List[int]]
-            """
-            res = []
-            n = len(nums)
-            nums = sorted(nums)
-            for i in range(n-2):
-                if i > 0 and nums[i] == nums[i-1]:
-                    continue
-                j = i+1
-                k = n-1
-                new_target = -nums[i]
-                while j < k:
-                    summ = nums[j] + nums[k]
-                    if summ < new_target:
-                        j += 1
-                    elif summ > new_target:
-                        k -= 1
-                    else:
-                        res.append([nums[i], nums[j], nums[k]])
-                        # removing duplicate answer
-                        while j < k and nums[j+1] == nums[j]:
-                            j += 1
-                        j += 1
-                        # removing duplicate answe
-                        while k > j and nums[k-1] == nums[k]:
-                            k -= 1
-                        k -= 1
-            return res
+
+    #     res = set()
+    #     nums.sort()
+        
+    #     for i in range(len(nums)-2):
+    #         if i > 0:
+    #             return list(res)
+    #         l,r = i+1, len(nums)-1
+    #         while l < r:
+    #             val = nums[i] + nums[l] + nums[r]
+    #             if val == 0:
+    #                 res.add((nums[i],nums[l],nums[r]))
+    #                 l+=1
+    #             elif val < 0:
+    #                 l+=1
+    #             else:
+    #                 r-=1
+    #     return list(res)
+
+    # # time: O(n^2), space: O(1)
+    # # optimization version from threeSum1()
+    # def threeSum2(self, nums):
+    #         """
+    #         :type nums: List[int]
+    #         :rtype: List[List[int]]
+    #         """
+    #         res = []
+    #         n = len(nums)
+    #         nums = sorted(nums)
+    #         for i in range(n-2):
+    #             if i > 0 and nums[i] == nums[i-1]:
+    #                 continue
+    #             j = i+1
+    #             k = n-1
+    #             new_target = -nums[i]
+    #             while j < k:
+    #                 summ = nums[j] + nums[k]
+    #                 if summ < new_target:
+    #                     j += 1
+    #                 elif summ > new_target:
+    #                     k -= 1
+    #                 else:
+    #                     res.append([nums[i], nums[j], nums[k]])
+    #                     # removing duplicate answer
+    #                     while j < k and nums[j+1] == nums[j]:
+    #                         j += 1
+    #                     j += 1
+    #                     # removing duplicate answe
+    #                     while k > j and nums[k-1] == nums[k]:
+    #                         k -= 1
+    #                     k -= 1
+    #         return res
 
 
 if __name__ == "__main__":
@@ -95,6 +112,6 @@ if __name__ == "__main__":
     nums = [-1,0,1,2,-1,-4]
     # print(s.threeSum1(nums))
     print(s.threeSum1(nums))
-    print(s.threeSum2(nums))
+    # print(s.threeSum2(nums))
 
 
